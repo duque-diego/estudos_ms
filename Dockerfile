@@ -19,7 +19,7 @@ RUN composer install && \
             php artisan config:cache
 
 
-RUN ls -s public html
+# RUN ls -s public html
 
 EXPOSE 9000
 
