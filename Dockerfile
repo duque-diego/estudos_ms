@@ -1,7 +1,14 @@
 FROM php:7.3.6-fpm-alpine3.9
 
-RUN apk add bash mysql-client
+RUN apk add --no-cache openssl bash mysql-client nodejs npm
 RUN docker-php-ext-install pdo pdo_mysql
+
+# RUN apt-get update && apt-get install -y wget
+
+ENV DOCKERIZE_VERSION v0.6.1
+RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+    && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+    && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 
 WORKDIR /var/www
 RUN rm -rf /var/www/html
@@ -9,14 +16,14 @@ RUN rm -rf /var/www/html
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 
-COPY . /var/www
+# COPY . /var/www
 
 RUN apk add composer
 
-RUN composer install && \
-            cp .env.example .env && \
-            php artisan key:generate && \
-            php artisan config:cache
+# RUN composer install && \
+#             cp .env.example .env && \
+#             php artisan key:generate && \
+#             php artisan config:cache
 
 
 # RUN ls -s public html
