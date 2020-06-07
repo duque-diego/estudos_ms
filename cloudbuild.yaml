@@ -8,9 +8,13 @@ steps:
   name: 'gcr.io/cloud-builders/docker'
   args: ['ps']
 
-# - id: "Rodando ping"
-#   name: 'gcr.io/cloud-builders/docker'
-#   args: ['exec', '-t', 'app', 'ping', 'db']
+- id: "Rodando ping"
+  name: 'gcr.io/cloud-builders/docker'
+  args: ['exec', '-t', 'app', 'ping', 'db']
+
+- id: "Rodando ping"
+  name: 'gcr.io/cloud-builders/docker'
+  args: ['exec', '-t', 'app', 'mysql', '-u root', '-proot', 'db', 'laravel']
 
 - id: "Rodando composer"
   name: 'gcr.io/cloud-builders/docker'
@@ -24,17 +28,17 @@ steps:
   name: 'gcr.io/cloud-builders/docker'
   args: ['exec', '-t', 'app', 'php', '/var/www/artisan', 'key:generate']
 
-- id: "Rodando cache clear"
-  name: 'gcr.io/cloud-builders/docker'
-  args: ['exec', '-t', 'app', 'php', '/var/www/artisan', 'cache:clear']
+# - id: "Rodando cache clear"
+#   name: 'gcr.io/cloud-builders/docker'
+#   args: ['exec', '-t', 'app', 'php', '/var/www/artisan', 'cache:clear']
 
-- id: "Rodando migrations reset"
-  name: 'gcr.io/cloud-builders/docker'
-  args: ['exec', '-t', 'app', 'php', '/var/www/artisan', 'migrate:reset']
+# - id: "Rodando migrations reset"
+#   name: 'gcr.io/cloud-builders/docker'
+#   args: ['exec', '-t', 'app', 'php', '/var/www/artisan', 'migrate:reset']
 
-- id: "Rodando migrations"
-  name: 'gcr.io/cloud-builders/docker'
-  args: ['exec', '-t', 'app', 'php', '/var/www/artisan', 'migrate']
+# - id: "Rodando migrations"
+#   name: 'gcr.io/cloud-builders/docker'
+#   args: ['exec', '-t', 'app', 'php', '/var/www/artisan', 'migrate']
 
 - id: "Rodando phpunit"
   name: 'gcr.io/cloud-builders/docker'
