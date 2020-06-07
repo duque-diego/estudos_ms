@@ -26,7 +26,15 @@ steps:
 
 - id: "Rodando cache clear"
   name: 'gcr.io/cloud-builders/docker'
-  args: ['exec', '-t', 'app', 'php', '/var/www/artisan', 'reset']
+  args: ['exec', '-t', 'app', 'php', '/var/www/artisan', 'cache:clear']
+
+- id: "Rodando cache clear"
+  name: 'gcr.io/cloud-builders/docker'
+  args: ['exec', '-t', 'app', 'php', '/var/www/artisan', 'cache:clear']
+
+- id: "Rodando migrations reset"
+  name: 'gcr.io/cloud-builders/docker'
+  args: ['exec', '-t', 'app', 'php', '/var/www/artisan', 'migrate:reset']
 
 - id: "Rodando migrations"
   name: 'gcr.io/cloud-builders/docker'
