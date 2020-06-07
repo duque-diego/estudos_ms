@@ -17,7 +17,7 @@ services:
         networks: 
             - app_network
         depends_on: 
-            - db-teste
+            - db
             - redis
 
 
@@ -35,10 +35,10 @@ services:
         depends_on:
             - app
 
-    db-teste:
+    db:
         image: mysql:5.7
         command: --innodb-use-native-aio=0
-        container_name: db-teste
+        container_name: db
         restart: always
         tty: true
         ports: 
