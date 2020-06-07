@@ -12,7 +12,7 @@ steps:
   name: 'gcr.io/cloud-builders/docker'
   args: ['exec', '-t', 'app', 'ping', 'db']
 
-- id: "Rodando ping"
+- id: "Rodando conectando no banco"
   name: 'gcr.io/cloud-builders/docker'
   args: ['exec', '-t', 'app', 'mysql', '-u root', '-proot', 'db', 'laravel']
 
