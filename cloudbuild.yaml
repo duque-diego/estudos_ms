@@ -14,7 +14,7 @@ steps:
 
 - id: "Rodando conectando no banco"
   name: 'gcr.io/cloud-builders/docker'
-  args: ['exec', '-t', 'app', 'mysql', '-u','root', '-p', 'root', 'db', 'laravel']
+  args: ['exec', '-t', 'app', 'mysql -u root -proot db laravel']
 
 - id: "Rodando composer"
   name: 'gcr.io/cloud-builders/docker'
